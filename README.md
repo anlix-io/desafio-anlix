@@ -25,7 +25,7 @@ Além disso, precisamos que algumas informações estejam disponíveis em uma in
 
 * Instruções no arquivo README.md de como executar seu projeto são importantes. Conteinerização será muito bem vinda.
 
-* Faça commits mostrando a evolução do projeto.
+* Faça commits em inglês mostrando a evolução do projeto.
 
 **Como o desafio deve ser entregue?**
 
