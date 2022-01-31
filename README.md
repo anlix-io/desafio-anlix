@@ -33,7 +33,7 @@ Submeta o código desenvolvido através de um repositório no Github e compartil
 
 **Posso tirar dúvidas?**
 
-Sim, claro! Estaremos disponíveis através do usuário no Telegram @celsocarrasco
+Sim, claro! Estaremos disponíveis através do usuário no Telegram @anlixdevduvidas
 
 **Em qual linguagem deve ser feito o desenvolvimento?**
 
