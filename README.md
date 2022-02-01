@@ -35,12 +35,6 @@ Submeta o código desenvolvido através de um repositório no Github e compartil
 
 Sim, claro! Estaremos disponíveis através do usuário no Telegram @anlixdevduvidas
 
-**Em qual linguagem deve ser feito o desenvolvimento?**
-
-**Alguma tecnologia específica?**
-
-**Posso usar um framework?**
-
-**Qual banco de dados devo usar?**
+**Em qual linguagem deve ser feito o desenvolvimento? Alguma tecnologia específica? Posso usar um framework? Qual banco de dados devo usar?**
 
 Seja livre para voar.
