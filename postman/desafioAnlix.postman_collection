@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "7446b423-375c-4995-a099-36f31bc2e69f",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "desafioAnlix",
+			"item": [
+				{
+					"name": "/cpfIndiceRecent?cpf={819.263.701-80}&typeIndice={pulmonar}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/CpfIndiceRecent?cpf=819.263.701-80&typeIndice=pulmonar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"CpfIndiceRecent"
+							],
+							"query": [
+								{
+									"key": "cpf",
+									"value": "819.263.701-80"
+								},
+								{
+									"key": "typeIndice",
+									"value": "pulmonar"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/cpfRecent?cpf={819.263.701-80}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/CpfRecent?cpf=819.263.701-80",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"CpfRecent"
+							],
+							"query": [
+								{
+									"key": "cpf",
+									"value": "819.263.701-80"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/indiceCpfDate?cpf={819.263.701-80}&typeIndice={pulmonar}&dateInicial={01/04/2021}&dateFinal={13/06/2021}",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "/pacients?nome={diego}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/pacients?nome=diego",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"pacients"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "diego"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/dataGeral?date={01/06/2021}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/dataGeral?date=01/06/2021",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"dataGeral"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "01/06/2021"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/indiceFilter?cpf={974.642.524-20}&typeIndice={cardiaco}&indiceInicial={0.4}&indiceFinal={0.9}",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
