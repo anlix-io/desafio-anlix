@@ -7,7 +7,7 @@ import { Container } from '../../styles/default';
 import NavBar from '../../components/NavBar';
 
 const User = () => {
-    const cpf = useRouter().query.user 
+    const cpf = useRouter().query.user
 
     return ( 
         <> 

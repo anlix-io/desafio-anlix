@@ -8,7 +8,7 @@ export default createGlobalStyle`
         background: none;
         border: none;
         outline: none; 
-        font-family: 'Segoe UI';
+        font-family: 'Roboto'; 
 
         .css-18lolh3-MuiDataGrid-root .MuiDataGrid-columnHeader:focus, .css-18lolh3-MuiDataGrid-root .MuiDataGrid-cell:focus {
         outline: none;
@@ -24,6 +24,10 @@ export default createGlobalStyle`
 
         .css-18lolh3-MuiDataGrid-root .MuiDataGrid-columnHeader:focus-within, .css-18lolh3-MuiDataGrid-root .MuiDataGrid-cell:focus-within {
         outline: none;
+        }
+
+        a{
+            color: black;
         }
    }
 `

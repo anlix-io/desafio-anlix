@@ -10,15 +10,23 @@ const DashBoardExam = ({dataExamCardiac,dataExamPulmonary}) => {
    
     /* SELECT DATE */
     const MenuProps = {PaperProps:{style:{maxHeight: 48 * 4.5 + 8, width: 250}}};
-    const selectDateExamCardiac = dataExamCardiac.map( exam => exam.data)
-    const selectDateExamPulmonary = dataExamPulmonary.map( exam => exam.data)
+  
+    /* SELECT EXAM */ 
+    const dataExamName = ['Cardiaco', 'Pulmonar']
 
-    const [selectDateCardiac, setSelectDateCardiac] = useState(selectDateExamCardiac[0])
-    const handleChangeSelectCardiac = (event) => { setSelectDateCardiac(event.target.value);};
+    const dataExamDashBoard = [dataExamCardiac, dataExamPulmonary]
+
+    /* OPTION */
+    const [selectExamDashBoard, setSelectExamDashBoard] = useState('0')
     
-    const [selectDatePulmonary, setSelectDatePulmonary] = useState(selectDateExamPulmonary[0])
-    const handleChangeSelectPulmonary = (event) => { setSelectDatePulmonary(event.target.value);};
+    /* DATE */
+    const dateExamDashBoard = dataExamDashBoard[selectExamDashBoard].map( exam => exam.data)
+    
+    const [selectDateExam, setSelectDateExam] = useState(dateExamDashBoard[0])
 
+    const handleChangeSelectExam = (event) => { 
+    setSelectDateExam(event.target.value);}; 
+   
     /* OPTION DASHBOARD */
     const [optionDashBoard, setOptionDashBoard] = useState(true)
   
@@ -26,14 +34,15 @@ const DashBoardExam = ({dataExamCardiac,dataExamPulmonary}) => {
     if(dataExamCardiac.length === 0 || dataExamCardiac === undefined || dataExamPulmonary === undefined || dataExamPulmonary.length === 0){ return <LoadinPage/>}
     
     /* DASHBOARD EXAM */
-    const rowDataCardiac = dataExamCardiac.filter( exam => exam.data === selectDateCardiac)[0].exame
-    const ind_card = rowDataCardiac.map( exam => exam.ind_card)
-    const EPOC = rowDataCardiac.map( exam => exam.EPOC) 
+    const rowDataExam = dataExamDashBoard[selectExamDashBoard].filter( exam => exam.data === selectDateExam)[0].exame 
+
+    const indice_exam = rowDataExam.map( exam => exam.ind_card || exam.ind_pulm)
+    const EPOC = rowDataExam.map( exam => exam.EPOC)
 
     /* DATA INPUT DASHBOARD */
     const series = [{
-        name: optionDashBoard === true ? 'Indice cardiaco' : 'EPOC',
-        data: optionDashBoard === true ? ind_card : EPOC
+        name: optionDashBoard === true ? `Indice ${dataExamName[selectExamDashBoard]}` : 'EPOC',
+        data: optionDashBoard === true ? indice_exam : EPOC
     }]
 
     /* CONFIG DASHBOARD */
@@ -96,12 +105,26 @@ const DashBoardExam = ({dataExamCardiac,dataExamPulmonary}) => {
         
         <Chart style={{padding: "16px"}} options={options} series={series} type="area" width={"100%"} height={500} />
 
+        {/* SELECT EXAM */}
+        <FormControl sx={{ mb: 3, ml: "16px", minWidth: 150 }}>
+                <InputLabel id="demo-simple-select-autowidth-label" color="success">Exame</InputLabel>
+                <Select labelId="demo-simple-select-autowidth-label" id="demo-simple-select-autowidth" value={selectExamDashBoard} 
+                onChange={(e)=> setSelectExamDashBoard(e.target.value)} label="Exame" MenuProps={MenuProps} color="success" >
+                
+                 {dataExamName.map( (exam, index)=> { 
+
+                   return <MenuItem key={index} value={index}>{exam}</MenuItem>
+                 })}
+                
+                </Select>
+        </FormControl>
+
         {/* SELECT DATE */}
         <FormControl sx={{ mb: 3, mx: "16px", minWidth: 150 }}>
                 <InputLabel id="demo-simple-select-autowidth-label" color="success">Data</InputLabel>
-                <Select labelId="demo-simple-select-autowidth-label" id="demo-simple-select-autowidth" value={selectDateCardiac} onChange={handleChangeSelectCardiac} label="Data" MenuProps={MenuProps} color="success">
+                <Select labelId="demo-simple-select-autowidth-label" id="demo-simple-select-autowidth" value={selectDateExam} onChange={handleChangeSelectExam} label="Data" MenuProps={MenuProps} color="success">
                 
-                {selectDateExamCardiac.map( (data, index) => {
+                {dateExamDashBoard.map( (data, index) => {
                     return(<MenuItem key={index} value={data}>{data.replace(/(\d{2})(\d{2})(\d{4})/, "$1/$2/$3")}</MenuItem>)
                 })}
                 
@@ -109,7 +132,7 @@ const DashBoardExam = ({dataExamCardiac,dataExamPulmonary}) => {
         </FormControl>
         
         {/* OPTION TYPE */}
-        <Button onClick={()=>setOptionDashBoard(true)} style={{height: '56px', marginRight: '16px'}} variant="outlined" size="large" color="error">Indice cardiaco</Button>
+        <Button onClick={()=>setOptionDashBoard(true)} style={{height: '56px', marginRight: '16px'}} variant="outlined" size="large" color="error">{`Indice ${dataExamName[selectExamDashBoard]}`}</Button>
         <Button onClick={()=>setOptionDashBoard(false)} style={{height: '56px', marginRight: '16px'}} variant="outlined" color="success" size="large">EPOC</Button>
         </Card>
         

@@ -6,9 +6,9 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Link from 'next/link'; 
 
-const pages = ['home'];
+const pages = ['pacientes', 'exames'];
 
-const NavMenu = () => {
+const NavBar = () => {
 
 const styledNavBar = {boxShadow: 'rgb(145 158 171 / 24%) 0px 0px 2px 0px, rgb(145 158 171 / 24%) 0px 16px 32px -4px', background: '#00ab55',}
 
@@ -35,4 +35,4 @@ const styledNavBar = {boxShadow: 'rgb(145 158 171 / 24%) 0px 0px 2px 0px, rgb(14
      );
 }
  
-export default NavMenu;
+export default NavBar;

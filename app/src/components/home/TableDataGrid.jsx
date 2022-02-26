@@ -100,9 +100,9 @@ const TableDataGrid = () => {
       return (
           <Box sx={{ maxWidth: '600px', margin: '0 auto', mt: '300px', px: '20px', textAlign: 'center', fontSize: '16px'}}>
             {(data === undefined ? 
-            <p>Pesquise por um paciente ou clique em pesquisar com campo vazio para exibir todos pacientes</p> 
+            <p>Pesquise por um paciente ou selecione a opção <b>nome</b> e clique em pesquisar com campo vazio para exibir todos pacientes.</p> 
             : 
-            <p>Nenhum paciente encontrado</p>)}
+            <p>Nenhum paciente encontrado!</p>)}
             </Box>
       );
     }
