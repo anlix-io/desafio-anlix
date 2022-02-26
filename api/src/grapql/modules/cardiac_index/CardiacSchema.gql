@@ -1,0 +1,15 @@
+type Cardiac {
+    data: String!
+    exame: [ExameCardiac!]!
+}
+
+type ExameCardiac {
+    CPF: String!
+    EPOC: String!
+    ind_card: String!
+}
+
+type Query {
+    cardiacIndexs: [Cardiac!]!
+    cardiac(CPF: String!): [Cardiac!]!
+}

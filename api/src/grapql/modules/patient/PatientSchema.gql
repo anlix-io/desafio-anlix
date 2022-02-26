@@ -1,0 +1,36 @@
+scalar Date
+
+type Patient {
+    nome: String!
+    idade: Int!
+    cpf: String!
+    rg: String!
+    data_nasc: Date!
+    sexo: String!
+    signo: String!
+    mae: String!
+    pai: String!
+    email: String!
+    senha: String!
+    cep: String!
+    endereco: String!
+    numero: String!
+    bairro: String!
+    cidade: String!
+    estado: String!
+    telefone_fixo: String!
+    celular: String!
+    altura: String!
+    peso: Int!
+    tipo_sanguineo: String!
+    cor: String!
+    indiceCardiaco: [Cardiac!]!
+    indicePulmonar: [Pulmonary!]!
+}
+
+type Query {
+    patients: [Patient!]!
+    getPatientByCPF(cpf: String!): [Patient!]!
+    getPatientByName(nome: String!): [Patient!]!
+    getPatientByCellPhone(celular: String!): Patient!
+}

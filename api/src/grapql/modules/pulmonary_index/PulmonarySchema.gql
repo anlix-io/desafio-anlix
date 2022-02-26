@@ -1,0 +1,15 @@
+type Pulmonary {
+    data: String!
+    exame: [ExamePulmonary!]!
+}
+
+type ExamePulmonary {
+    CPF: String!
+    EPOC: String!
+    ind_pulm: String!
+}
+
+type Query {
+    pulmonaryIndexs: [Pulmonary!]!
+    pulmonary(CPF: String!): [Pulmonary!]!
+}
