@@ -1,4 +1,4 @@
-import indice_cardiaco from '../../../database/indice_cardiaco/indice_cardiaco.json'
+import indice_cardiaco from '../../../../public/database/indice_cardiaco/indice_cardiaco.json'
 
 export default { 
     Query: {

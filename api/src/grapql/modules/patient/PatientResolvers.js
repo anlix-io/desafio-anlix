@@ -1,6 +1,6 @@
-import PatientData from '../../../database/pacientes.json'
-import indice_cardiaco from '../../../database/indice_cardiaco/indice_cardiaco.json'
-import indice_pulmonar from '../../../database/indice_pulmonar/indice_pulmonar.json'
+import PatientData from '../../../../public/database/pacientes.json'
+import indice_cardiaco from '../../../../public/database/indice_cardiaco/indice_cardiaco.json'
+import indice_pulmonar from '../../../../public/database/indice_pulmonar/indice_pulmonar.json'
 
 export default {
     Patient: {

@@ -1,4 +1,4 @@
-import indice_pulmonar from '../../../database/indice_pulmonar/indice_pulmonar.json'
+import indice_pulmonar from '../../../../public/database/indice_pulmonar/indice_pulmonar.json'
 
 export default { 
     Query: {

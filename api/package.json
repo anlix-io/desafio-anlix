@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "src/index",
+    "start": "node build/index.js",
+    "build": "babel src --out-dir build --copy-files",
     "dev": "npx nodemon --exec babel-node src/index.js -e js,gql"
   },
   "keywords": [],
-  "author": "",
+  "author": "Samuel Claudino Silva",
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^3.6.3",
