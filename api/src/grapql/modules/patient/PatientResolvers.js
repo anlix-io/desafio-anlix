@@ -14,8 +14,6 @@ export default {
 
         getPatientByCPF: async (_, {cpf}) => await PatientData.filter( patient => patient.cpf === cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")),
 
-        getPatientByCellPhone: async (_, {celular}) => await PatientData.find( patient => patient.celular === celular),
-
         getPatientByName: async (_, {nome}) => {
             nome = nome.toLowerCase()
             return( await PatientData.filter( 

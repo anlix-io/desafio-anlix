@@ -7,9 +7,14 @@ type ExamePulmonary {
     CPF: String!
     EPOC: String!
     ind_pulm: String!
+    paciente: [Patient!]
 }
 
 type Query {
-    pulmonaryIndexs: [Pulmonary!]!
-    pulmonary(CPF: String!): [Pulmonary!]!
+    getExamsPulmonary: [Pulmonary!]!
+    getExamPulmonaryByCpf(CPF: String!): [Pulmonary!]! 
+    getExamPulmonaryByDateAndCpf(data: String!, CPF: String!): [Pulmonary!]!
+    getExamPulmonaryByDate(data: String!): [Pulmonary!]!
+    getExamPulmonaryWithInterval(dataInicial: String!, dataFinal: String!, CPF: String!): [Pulmonary!]!
+    getExamPulmonaryWithIntervalValue(valorInicial: String!, valorFinal: String!, CPF: String!): [Pulmonary!]!
 }
