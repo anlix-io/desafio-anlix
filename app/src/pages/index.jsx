@@ -3,14 +3,14 @@ import { Container } from "../styles/default";
 import { client } from '../config/client-graphql';
 import { ApolloProvider } from '@apollo/client';
 import TableDataGrid from "../components/home/TableDataGrid";
-import Head from "next/head";
 import NavMenu from "../components/NavBar";
+import HeadPage from "../components/HeadPage";
 
 export default function Home() {
  
   return (
       <>
-      <Head><title>Home</title></Head>
+      <HeadPage titlePage={'Home - OnlyMedical'}/>
       <GlobalStyle/>
       <ApolloProvider client={client}>
          <NavMenu/>

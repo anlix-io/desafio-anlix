@@ -1,14 +1,14 @@
 import NavBar from "../components/NavBar";
 import GlobalStyle from "../styles/globalStyles";
-import { Container } from "../styles/default";
-import Head from "next/head";
+import { Container } from "../styles/default"; 
 import ErrorPage404 from "../styles/components/errorPage404";
 import Link from "next/link";
+import HeadPage from "../components/HeadPage";
 
 const Error404 = () => {
     return ( 
     <>
-    <Head><title>404 - página não encontrada</title></Head>
+    <HeadPage titlePage={'404 - página não encontrada - OnlyMedical'}/>
     <GlobalStyle/>
     <NavBar/>
     <Container>

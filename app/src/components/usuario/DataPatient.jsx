@@ -1,9 +1,9 @@
-import { gql, useQuery } from "@apollo/client"; 
-import Head from "next/head"; 
+import { gql, useQuery } from "@apollo/client";
 import DashBoardExam from "./DashBoardExam";
 import ExamPatient from "./ExamPatient";
 import InfoPatient from "./InfoPatient";
 import LoadinPage from '../LoadingPage'
+import HeadPage from "../HeadPage";
 
 
 const QUERT_PATIENT = gql`
@@ -26,11 +26,9 @@ const DataPatient = ( {cpf} ) => {
   let dataExamCardiac = dataPatient.indiceCardiaco  || []
   let dataExamPulmonary = dataPatient.indicePulmonar  || []
 
- 
-
   return (
     <>
-    <Head><title>Perfil - {dataPatient.nome}</title></Head>
+    <HeadPage titlePage={`Perfil - ${dataPatient.nome} - OnlyMedical`}/>
  
     <InfoPatient dataPatient={dataPatient}></InfoPatient>
 

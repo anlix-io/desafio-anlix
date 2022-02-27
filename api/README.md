@@ -32,7 +32,7 @@ Para modo desenlvedor utilize o ``npm run dev``
 
 # Exemplos de Query
 
-Apos iniciar o servidor abra o API Client  [http://localhost:4000](http://localhost:4000)
+Após iniciar o servidor abra o API Client  [http://localhost:4000](http://localhost:4000)
 
 <br/>
 <br/>
