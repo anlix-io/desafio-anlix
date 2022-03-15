@@ -21,7 +21,7 @@ Além disso, precisamos que algumas informações estejam disponíveis em uma in
 
 * Os arquivos fornecidos representam apenas uma pequena amostra de dezenas de milhares de pacientes que este hospital atendeu nos últimos 50 anos. O software desenvolvido deve ser capaz de lidar com todos esses dados. 
 
-* O gerente de projetos Celso Carrasco de nossa empresa de software precisa de um prazo máximo de entrega de 14 dias corridos. Desenvolva os itens mais pertinentes em sua avaliação caso não haja tempo suficiente para concluir todos os itens.
+* O gerente de projetos Celso Carrasco de nossa empresa de software precisa de um prazo máximo de entrega de 7 dias corridos. Iremos observar a data de cada commit. Desenvolva os itens mais pertinentes em sua avaliação caso não haja tempo suficiente para concluir todos os itens.
 
 * Instruções no arquivo README.md de como executar seu projeto são importantes. Conteinerização será muito bem vinda.
 
