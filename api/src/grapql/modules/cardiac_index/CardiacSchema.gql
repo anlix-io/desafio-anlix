@@ -1,0 +1,20 @@
+type Cardiac {
+    data: String!
+    exame: [ExameCardiac!]!
+}
+
+type ExameCardiac {
+    CPF: String!
+    EPOC: String!
+    ind_card: String!
+    paciente: [Patient!]
+}
+
+type Query {
+    getExamsCardiac: [Cardiac!]!
+    getExamCardiacByCpf(CPF: String!): [Cardiac!]!
+    getExamCardiacByDateAndCpf(data: String!, CPF: String!): [Cardiac!]!
+    getExamCardiacByDate(data: String!): [Cardiac!]!
+    getExamCardiacWithInterval(dataInicial: String!, dataFinal: String!, CPF: String!): [Cardiac!]!
+    getExamCardiacWithIntervalValue(valorInicial: String!, valorFinal: String!, CPF: String!): [Cardiac!]!
+}
