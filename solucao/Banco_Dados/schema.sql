@@ -30,7 +30,7 @@ CREATE TABLE endereco(
 	bairro char(20),
 	cidade char(20),
 	estado char(2),
-	PRIMARY KEY(id)
+	PRIMARY KEY(id),
 	FOREIGN KEY(cpf) REFERENCES paciente(cpf)
 );
 
@@ -39,7 +39,7 @@ CREATE TABLE indice_cardiaco(
 	cpf char(14) NOT NULL,
 	data_hora timestamp,
 	ind_cardiaco float,
-	PRIMARY KEY(id)
+	PRIMARY KEY(id),
 	FOREIGN KEY(cpf) REFERENCES paciente(cpf)
 );
 
@@ -48,6 +48,6 @@ CREATE TABLE indice_pulmonar(
 	cpf char(14) NOT NULL,
 	data_hora timestamp,
 	ind_pulmonar float,
-	PRIMARY KEY(id)
+	PRIMARY KEY(id),
 	FOREIGN KEY(cpf) REFERENCES paciente(cpf)
 );
