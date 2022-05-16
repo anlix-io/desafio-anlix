@@ -22,6 +22,7 @@ CREATE TABLE paciente(
 );
 
 CREATE TABLE endereco(
+	id bigint,
 	cpf char(14) NOT NULL,
 	cep char(9) ,
 	endereco char(200),
@@ -29,19 +30,24 @@ CREATE TABLE endereco(
 	bairro char(20),
 	cidade char(20),
 	estado char(2),
+	PRIMARY KEY(id)
 	FOREIGN KEY(cpf) REFERENCES paciente(cpf)
 );
 
 CREATE TABLE indice_cardiaco(
+	id bigint,
 	cpf char(14) NOT NULL,
 	data_hora timestamp,
 	ind_cardiaco float,
+	PRIMARY KEY(id)
 	FOREIGN KEY(cpf) REFERENCES paciente(cpf)
 );
 
 CREATE TABLE indice_pulmonar(
+	id bigint,
 	cpf char(14) NOT NULL,
 	data_hora timestamp,
 	ind_pulmonar float,
+	PRIMARY KEY(id)
 	FOREIGN KEY(cpf) REFERENCES paciente(cpf)
 );
