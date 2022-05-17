@@ -13,6 +13,7 @@ CREATE TABLE paciente(
 	pai char(80),
 	email char(100),
 	senha char(100),
+	altura float,
 	peso float,
 	tipo_sanguinio char(3),
 	cor char(20),
@@ -22,7 +23,7 @@ CREATE TABLE paciente(
 );
 
 CREATE TABLE endereco(
-	id bigint,
+	id serial,
 	cpf char(14) NOT NULL,
 	cep char(9) ,
 	endereco char(200),
@@ -35,7 +36,7 @@ CREATE TABLE endereco(
 );
 
 CREATE TABLE indice_cardiaco(
-	id bigint,
+	id serial,
 	cpf char(14) NOT NULL,
 	data_hora timestamp,
 	ind_cardiaco float,
@@ -44,7 +45,7 @@ CREATE TABLE indice_cardiaco(
 );
 
 CREATE TABLE indice_pulmonar(
-	id bigint,
+	id serial,
 	cpf char(14) NOT NULL,
 	data_hora timestamp,
 	ind_pulmonar float,
