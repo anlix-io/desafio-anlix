@@ -25,7 +25,8 @@ class Pacientes(Base):
 	telefone_fixo = Column(String)
 	telefone = Column(String)
 	endereco = relationship("Enderecos")
-	endereco = relationship("Indice_Cardiaco")
+	cardiaco = relationship("Indice_Cardiaco")
+	pulmonar = relationship("Indice_Pulmonar")
 
 
 class Enderecos(Base):
@@ -40,7 +41,7 @@ class Enderecos(Base):
 	cidade = Column(String)
 	estado = Column(String)
 
-class Indice_Cardiaco:
+class Indice_Cardiaco(Base):
 	__tablename__ = 'indice_cardiaco'
 
 	id = Column(Integer, primary_key=True)
@@ -48,7 +49,7 @@ class Indice_Cardiaco:
 	data_hora = Column(DateTime)
 	ind_cardiaco = Column(Float)
 
-class Indice_Pulmonar:
+class Indice_Pulmonar(Base):
 	__tablename__ = 'indice_pulmonar'
 
 	id = Column(Integer, primary_key=True)
