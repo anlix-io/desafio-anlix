@@ -5,11 +5,14 @@ import model
 from datetime import datetime
 
 PATH_PACIENTES = '/input_data/pacientes.json'
+PATH_CARDIACOS = '/input_data/indice_cardiaco/'
+PATH_PULMONAR = '/input_data/indice_pulmonar/'
 PATH_CARGA_BATCH = os.getcwd()
-def insert_record(path_records)
+
+
+def insert_record(path_records, connection):
 	with open(path_records, 'r') as registros:
 	    registros = json.loads(registros.read())
-	conn = connection.ConnectionDb()
 	for registro in registros:
 		paciente = model.Pacientes(
 			nome = registro['nome'],
@@ -42,7 +45,46 @@ def insert_record(path_records)
 			estado = registro['estado']
 		)
 		conn.conn.add(paciente)
+		conn.conn.commit()
 		conn.conn.add(endereco)
-	conn.conn.commit()
-	
+		conn.conn.commit()
+
+
+def insert_cardiaco(path_Cardiaco, connection):
+	for i in os.listdir(path_Cardiaco):
+		with open(path_Cardiaco+i, 'r') as registros:
+		    registros = registros.read().split()
+		    for indice in range(1,int(len(registros)/3)):
+		    	indice = indice*3
+		    	dados = registros[indice: indice+3]
+		    	registro = model.Indice_Cardiaco(
+		    		cpf = dados[0],
+		    		data_hora = datetime.fromtimestamp(int(dados[1])).
+		    							strftime('%Y-%m-%d %H:%M:%S'),
+		    		ind_cardiaco = float(dados[2])
+		    		)
+		    	conn.conn.add(registro)
+		    conn.conn.commit()
+
+
+def insert_pulmonar(path_Pulmonar, connection):
+	for i in os.listdir(path_Pulmonar):
+		with open(path_Pulmonar+i, 'r') as registros:
+		    registros = registros.read().split()
+		    for indice in range(1,int(len(registros)/3)):
+		    	indice = indice*3
+		    	dados = registros[indice: indice+3]
+		    	registro = model.Indice_Pulmonar(
+		    		cpf = dados[0],
+		    		data_hora = datetime.fromtimestamp(int(dados[1])).
+		    							strftime('%Y-%m-%d %H:%M:%S'),
+		    		ind_pulmonar = float(dados[2])
+		    		)
+		    	conn.conn.add(registro)
+		    conn.conn.commit()
+
+conn = connection.ConnectionDb()
+insert_record(PATH_CARGA_BATCH+PATH_PACIENTES, conn)
+insert_cardiaco(PATH_CARGA_BATCH+PATH_CARDIACOS, conn)
+insert_pulmonar(PATH_CARGA_BATCH+PATH_PULMONAR, conn)
 
