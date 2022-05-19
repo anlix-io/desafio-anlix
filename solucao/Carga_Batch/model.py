@@ -18,18 +18,22 @@ class Pacientes(Base):
 	pai = Column(String)
 	email = Column(String)
 	senha = Column(String)
-	tel_fixo = Column(String)
-	celular = Column(String)
 	altura = Column(Float)
 	peso = Column(Float)
-	tipo_sanguineo = Column(String)
+	tipo_sanguinio = Column(String)
 	cor = Column(String)
+	telefone_fixo = Column(String)
+	telefone = Column(String)
+	endereco = relationship("Enderecos")
+	cardiaco = relationship("Indice_Cardiaco")
+	pulmonar = relationship("Indice_Pulmonar")
+
 
 class Enderecos(Base):
 	__tablename__ = 'endereco'
 
-	id = Column(String, primary_key=True , autoincrement=True)
-	cpf = Column(String, primary_key=True)
+	id = Column(Integer, primary_key=True)
+	cpf = Column(String, ForeignKey('paciente.cpf'))
 	cep = Column(String)
 	endereco = Column(String)
 	numero = Column(Integer)
@@ -37,4 +41,18 @@ class Enderecos(Base):
 	cidade = Column(String)
 	estado = Column(String)
 
+class Indice_Cardiaco(Base):
+	__tablename__ = 'indice_cardiaco'
 
+	id = Column(Integer, primary_key=True)
+	cpf = Column(String, ForeignKey('paciente.cpf'))
+	data_hora = Column(DateTime)
+	ind_cardiaco = Column(Float)
+
+class Indice_Pulmonar(Base):
+	__tablename__ = 'indice_pulmonar'
+
+	id = Column(Integer, primary_key=True)
+	cpf = Column(String, ForeignKey('paciente.cpf'))
+	data_hora = Column(DateTime)
+	ind_pulmonar = Column(Float)
