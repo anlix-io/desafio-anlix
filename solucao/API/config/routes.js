@@ -12,7 +12,7 @@ const pool = new Pool({
 })
 
 routes.get('/', (req,res) => {
-	return res.json({"Menssagem": "Olá mundo!"})
+	return res.json({"Menssagem": "Online"})
 })
 
 routes.get('/HeartFeature/:cpf', (req,res) => {
@@ -105,8 +105,7 @@ routes.get('/allIndicesForData/:data', (req,res) => {
 routes.get('/CharacteristicBetweenDates', (req, res) => {
 	let cpf = req.body.cpf
 	let caracteristica = req.body.caracteristica
-	let teste = req.body.data_inicial
-	let [dia_inicial, mes_inicial, ano_inicial] = teste.split('-')
+	let [dia_inicial, mes_inicial, ano_inicial] = req.body.data_inicial.split('-')
 	let [dia_final, mes_final, ano_final] = req.body.data_final.split('-')
 	const data_inicial = [ano_inicial, mes_inicial, dia_inicial].join('-')
 	const data_final = [ano_final, mes_final, dia_final].join('-')
