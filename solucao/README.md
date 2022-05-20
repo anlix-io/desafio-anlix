@@ -119,7 +119,7 @@ Retorna todos os registros de uma característica  para um dado paciente em um i
  http://localhost:21262/CharacteristicBetweenDates
 ### Body
 {“cpf”: “cpf_paciente”,
-“caracteristica”: "cardiaca" ou “pulmonar”,
+“caracteristica”: "cardiaco" ou “pulmonar”,
 “data_inicial”: “dd-mm-yyyy”,
 “data_final”: “dd-mm-yyyy”
 }
@@ -138,7 +138,7 @@ Retorna  o último registro de uma característica  para um dado paciente em um 
  http://localhost:21262/CharacteristicBetweenDates
 ### Body
 {“cpf”: “cpf_paciente”,
-“caracteristica”: "cardiaca" ou “pulmonar”,
+“caracteristica”: "cardiaco" ou “pulmonar”,
 “data_inicial”: “dd-mm-yyyy”,
 “data_final”: “dd-mm-yyyy”
 }
