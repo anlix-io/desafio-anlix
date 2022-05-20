@@ -1,0 +1,39 @@
+version: '2.3.3'
+services:
+  db:
+    image: db
+    restart: always
+    ports:
+      - "5432:5432"
+
+    environment:
+      POSTGRES_USER: anlix
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: 'anlix'
+
+    networks:
+      - desafio
+
+
+  carga_batch:
+    image: carga
+    depends_on:
+      - db
+    restart: always
+    networks:
+      - desafio
+
+  api:
+    image: api
+    depends_on:
+      - db
+      - carga_batch
+    restart: always
+    ports:
+      - "21262:21262"
+
+    networks:
+      - desafio
+
+networks:
+  desafio:
