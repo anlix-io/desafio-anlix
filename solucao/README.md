@@ -153,3 +153,14 @@ Retorna todos os pacientes que contenham um nome ou parte de um nome.
 “nome”: “nome”
 }
 
+## Executando o projeto
+0. Abra o console
+1. Navegue até /desafio-anlix/solucao/Banco_Dados/
+2. execute “docker build . -t db”
+3. Navegue até /desafio-anlix/solucao/Carga_Batch/
+4. execute “docker build . -t carga”
+5. Navegue até /desafio-anlix/solucao/API/
+6. execute “docker build . -t api”
+7. Navegue até /desafio-anlix/solucao/
+8. execute “docker-compose up”
+
