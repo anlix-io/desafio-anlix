@@ -23,5 +23,17 @@ services:
     networks:
       - desafio
 
+  api:
+    image: api
+    depends_on:
+      - db
+      - carga_batch
+    restart: always
+    ports:
+      - "21262:21262"
+
+    networks:
+      - desafio
+
 networks:
   desafio:
