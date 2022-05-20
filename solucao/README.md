@@ -25,38 +25,49 @@ Um índice pulmonar pertence a apenas um paciente.
 
 ## Tabelas:
 	paciente:
-	nome: char(80)
-	idade: int
-	cpf : char(14) Primary Key
-	rg: char(12)
-	data_nasc: date
-	sexo: char(20)
-	signo: char(20)
-	mãe: char(80)
-	pai: char(80)
-	email: char(100)
-	senha: char(100)
-	peso: float
-	tipo_sanguinio: char(3)
-	cor: char(20)
-	telefone_fixo: char(20)
-	telefone: char(20)
+	nome char(100),
+	idade int,
+	cpf char(14) NOT NULL,
+	rg char(12),
+	data_nasc date,
+	sexo char(30),
+	signo char(30),
+	mae char(100),
+	pai char(100),
+	email char(100),
+	senha char(100),
+	altura float,
+	peso float,
+	tipo_sanguinio char(3),
+	cor char(30),
+	telefone_fixo char(30),
+	telefone char(30),
+	PRIMARY KEY(cpf)
 	
 	endereco:
-	cpf: Primarey Key
-	cep: char(9)
-	endereco: char(200)
-	numero: int
-	bairro: char(20)
-	cidade: char(20)
-	estado: char(2)
+	id serial,
+	cpf char(14) NOT NULL,
+	cep char(20) ,
+	endereco char(200),
+	numero int,
+	bairro char(100),
+	cidade char(100),
+	estado char(2),
+	PRIMARY KEY(id),
+	FOREIGN KEY(cpf) REFERENCES paciente(cpf)
 
 	indice_cardiaco:
-	cpf: Primarey Key
-	data_hora: timestemp
-	ind_pulm: float
+	id serial,
+	cpf char(14) NOT NULL,
+	data_hora timestamp,
+	ind_cardiaco float,
+	PRIMARY KEY(id),
+	FOREIGN KEY(cpf) REFERENCES paciente(cpf)
 
 	indice_pulmonar:
-	cpf: Primarey Key
-	data_hora: timestemp
-	ind_pulm: float
+	id serial,
+	cpf char(14) NOT NULL,
+	data_hora timestamp,
+	ind_pulmonar float,
+	PRIMARY KEY(id),
+	FOREIGN KEY(cpf) REFERENCES paciente(cpf)
