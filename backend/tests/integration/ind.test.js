@@ -8,7 +8,7 @@ const { expect } = chai;
 
 describe('Looking for patients and diseases in route /ind', function () {
   it('/:name/:disease/:initial_ind/:final_ind returns the most recent index that is equal to the specified index and disease', async function () {
-    const response = await chai.request(app).get('/ind/ale/cardiaco/0/0.6666666');
+    const response = await chai.request(app).get('/ind/name=ale/disease=cardiaco/initial_ind=0/final_ind=0.6666666');
 
     const output = {
       "patient": "974.642.524-20",

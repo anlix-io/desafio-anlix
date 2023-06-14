@@ -4,7 +4,7 @@ const { validateDisease, validateName } = require('../middlewares/index');
 
 const router = express.Router();
 
-router.get('/ind/:name/:disease/:initial_ind/:final_ind', validateName, validateDisease, async (req, res) => {
+router.get('/ind/name=:name/disease=:disease/initial_ind=:initial_ind/final_ind=:final_ind', validateName, validateDisease, async (req, res) => {
 
   const latestCharEqualToSpecifiedIndAndDisease = await getLatestCharByPatientAndIndAndDisease(req.params);
 

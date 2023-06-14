@@ -5,14 +5,14 @@ const { validateDisease, validateName, validateDate, validateDateInterval } = re
 
 const router = express.Router();
 
-router.get('/date/:date', validateDate, async (req, res) => {
+router.get('/date/date=:date', validateDate, async (req, res) => {
   const allCharByDate = await getAllCharByDate(req.params.date)
 
-  if (allCharByDate.length === 0) return res.status(404).send({message: 'Specified Date Not Found'})
+  if (allCharByDate.length === 0) return res.status(404).send({message: 'Specified Dates Not Found'})
   return res.status(200).json({allCharByDate})
 })
 
-router.get('/date/:name/:disease/:initial_date/:final_date', validateName, validateDisease, validateDateInterval, async (req, res) => {
+router.get('/date/name=:name/disease=:disease/initial_date=:initial_date/final_date=:final_date', validateName, validateDisease, validateDateInterval, async (req, res) => {
 
   const patientCharByDateInterval = await getPatientCharByDateInterval(req.params);
 

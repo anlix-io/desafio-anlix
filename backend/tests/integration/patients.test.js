@@ -8,14 +8,14 @@ const { expect } = chai;
 
 describe('Looking for patients and diseases in route /patient', function () {
   it('/:name returns a list of all patients that have the string in their name', async function () {
-      const response = await chai.request(app).get('/patient/ale');
+      const response = await chai.request(app).get('/patient/name=ale');
 
       expect(response.status).to.be.equal(200);
       expect(response.body.result).to.have.lengthOf(3);
   });
 
   it('/:name/:disease returns the most recent patient information', async function () {
-      const response = await chai.request(app).get('/patient/ale/pulmonar');
+      const response = await chai.request(app).get('/patient/name=ale/disease=pulmonar');
 
       const output = {
         "mostRecentCharacteristic": {
@@ -30,7 +30,7 @@ describe('Looking for patients and diseases in route /patient', function () {
   });
 
   it('/:name/diseases/info returns the patient\'s cpf and its two most recent characteristics', async function () {
-      const response = await chai.request(app).get('/patient/ale/diseases/info');
+      const response = await chai.request(app).get('/patient/name=ale/diseases/info');
 
       const output = {
         "latestPatientInformations": {
