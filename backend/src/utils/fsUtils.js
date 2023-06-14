@@ -2,8 +2,8 @@ const fs = require('fs').promises;
 const path = require('path');
 
 const patients = require('../../dados/pacientes.json')
-const ind_car_dir = path.resolve(__dirname, '../../dados/indice_cardiaco');
-const ind_pul_dir = path.resolve(__dirname, '../../dados/indice_pulmonar');
+const ind_card_dir = path.resolve(__dirname, '../../dados/indice_cardiaco');
+const ind_pulm_dir = path.resolve(__dirname, '../../dados/indice_pulmonar');
 
 const readDir = async (dir) => {
   try {
@@ -28,7 +28,7 @@ const readArchivesAndSeparateByLine = async (archives, chosenDisease) => {
       lines.forEach((line) => {
           const [cpf, epoch, ind] = line.split(' ');
 
-          if (cpf !== 'CPF') informationFound.push({cpf, epoch, ind})
+          if (cpf !== 'CPF' && cpf !== '') informationFound.push({cpf, epoch, ind})
       })
     }))
     return informationFound;
@@ -40,7 +40,7 @@ const readArchivesAndSeparateByLine = async (archives, chosenDisease) => {
 const getPatientsByName = (name) => patients.filter((patient) => patient.nome.toLowerCase().includes(name.toLowerCase()));
 
 const getPatientByNameAndDisease = async (name, disease) => {
-  const chosenDisease = disease === 'cardiaco' ? ind_car_dir : ind_pul_dir;
+  const chosenDisease = disease === 'cardiaco' ? ind_card_dir : ind_pulm_dir;
   const archives = await readDir(chosenDisease);
   const patientsWithChosenDisease = await readArchivesAndSeparateByLine(archives, chosenDisease);
   const chosenPatient = getPatientsByName(name)[0].cpf;
@@ -63,10 +63,24 @@ const getPatientAndDiseases = async (name) => {
   return latestPatientInformations
 }
 
+const getAllCharByDate = async (paramDate) => {
+  const patientsCardByDate = await readArchivesAndSeparateByLine([paramDate], ind_card_dir)
+  const patientsPulmByDate = await readArchivesAndSeparateByLine([paramDate], ind_pulm_dir)
+
+  if (!patientsCardByDate?.length && !patientsPulmByDate?.length ) return []
+
+  const allCharByDate = {
+    filter_date: paramDate,
+    ind_card: patientsCardByDate,
+    ind_pulm: patientsPulmByDate
+  }
+
+  return allCharByDate;
+}
+
 module.exports = {
   getPatientsByName,
   getPatientByNameAndDisease,
-  getPatientAndDiseases
+  getPatientAndDiseases,
+  getAllCharByDate
 }
-
-// await fs.writeFile(path.resolve(__dirname, '../../tests/helpers/mostRecentCharacteristicMock'), JSON.stringify(data, null, 2));
