@@ -4,7 +4,8 @@ const {
   getPatientByNameAndDisease,
   getPatientAndDiseases,
   getAllCharByDate,
-  getPatientCharByDateInterval
+  getPatientCharByDateInterval,
+  getLatestCharByPatientAndIndAndDisease
 } = require('./utils/fsUtils');
 
 const app = express();
@@ -96,6 +97,15 @@ app.get('/date/:name/:disease/:initial_date/:final_date', validateName, validate
   if (patientCharByDateInterval?.length === 0) return res.status(404).send({message: 'Specified Dates Not Found'})
 
   return res.status(200).json({patientCharByDateInterval})
+})
+
+app.get('/ind/:name/:disease/:initial_ind/:final_ind', validateName, validateDisease, async (req, res) => {
+
+  const latestCharEqualToSpecifiedIndAndDisease = await getLatestCharByPatientAndIndAndDisease(req.params);
+
+  if (latestCharEqualToSpecifiedIndAndDisease?.length === 0) return res.status(404).send({message: 'Specified Index Not Found'})
+
+  return res.status(200).json({latestCharEqualToSpecifiedIndAndDisease})
 })
 
 
