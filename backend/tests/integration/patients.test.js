@@ -29,19 +29,19 @@ describe('Looking for patients and diseases in route /patient', function () {
       expect(response.body).to.be.deep.equal(output);
   });
 
-  it('/:name/diseases returns the customer\'s cpf and its two most recent characteristics', async function () {
-      const response = await chai.request(app).get('/patient/ale/diseases');
+  it('/:name/diseases/info returns the patient\'s cpf and its two most recent characteristics', async function () {
+      const response = await chai.request(app).get('/patient/ale/diseases/info');
 
       const output = {
-        "latestPatientInformation": {
-          "cpf": "974.642.524-20",
+        "latestPatientInformations": {
+          "patient": "974.642.524-20",
           "ind_card": {
             "epoch": "1624330210",
             "ind": "0.662953"
           },
           "ind_pulm": {
-            "epoch": "1624255351",
-            "ind": "0.085284"
+            "epochPulm": "1624255351",
+            "indPulm": "0.085284"
           }
         }
       }

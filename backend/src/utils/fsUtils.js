@@ -37,9 +37,9 @@ const readArchivesAndSeparateByLine = async (archives, chosenDisease) => {
   }
 }
 
-const getPatientsByName = (query) => patients.filter((patient) => patient.nome.toLowerCase().includes(query.toLowerCase()));
+const getPatientsByName = (name) => patients.filter((patient) => patient.nome.toLowerCase().includes(name.toLowerCase()));
 
-const getPatientsByNameAndDisease = async (name, disease) => {
+const getPatientByNameAndDisease = async (name, disease) => {
   const chosenDisease = disease === 'cardiaco' ? ind_car_dir : ind_pul_dir;
   const archives = await readDir(chosenDisease);
   const patientsWithChosenDisease = await readArchivesAndSeparateByLine(archives, chosenDisease);
@@ -49,9 +49,24 @@ const getPatientsByNameAndDisease = async (name, disease) => {
   return mostRecentChar
 }
 
+const getPatientAndDiseases = async (name) => {
+  const {epoch, ind} = await getPatientByNameAndDisease(name, 'cardiaco');
+  const {epoch: epochPulm, ind: indPulm} = await getPatientByNameAndDisease(name, 'pulmonar');
+  const patient = getPatientsByName(name)[0].cpf;
+
+  const latestPatientInformations = {
+    patient,
+    ind_card: {epoch, ind},
+    ind_pulm: {epochPulm, indPulm}
+  }
+
+  return latestPatientInformations
+}
+
 module.exports = {
   getPatientsByName,
-  getPatientsByNameAndDisease
+  getPatientByNameAndDisease,
+  getPatientAndDiseases
 }
 
 // await fs.writeFile(path.resolve(__dirname, '../../tests/helpers/mostRecentCharacteristicMock'), JSON.stringify(data, null, 2));
