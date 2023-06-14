@@ -2,6 +2,7 @@ const express = require('express');
 const { getPatientsByName, getPatientsByNameAndDisease } = require('./utils/fsUtils');
 
 const app = express();
+app.use(express.json());
 
 const validateName = (req, res, next) => {
   const result = getPatientsByName(req.params.name)
@@ -27,11 +28,12 @@ app.get('/patient/:name', validateName, (req, res) => {
 return res.status(200).json({result})
 });
 
-app.get('/patient/:name/:disease', validateName, validateDisease, (req, res) => {
+app.get('/patient/:name/:disease', validateName, validateDisease, async (req, res) => {
   const { name, disease } = req.params;
 
-  const result = getPatientsByNameAndDisease(name.toLowerCase(), disease.toLowerCase())
+  const mostRecentCharacteristic = await getPatientsByNameAndDisease(name.toLowerCase(), disease.toLowerCase())
 
+  return res.status(200).json({mostRecentCharacteristic})
 })
 
 

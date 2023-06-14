@@ -42,8 +42,12 @@ const getPatientsByName = (query) => patients.filter((patient) => patient.nome.t
 const getPatientsByNameAndDisease = async (name, disease) => {
   const chosenDisease = disease === 'cardiaco' ? ind_car_dir : ind_pul_dir;
   const archives = await readDir(chosenDisease);
-  const result = await readArchivesAndSeparateByLine(archives, chosenDisease);
-  console.log(result);
+  const patientsWithChosenDisease = await readArchivesAndSeparateByLine(archives, chosenDisease);
+  const chosenPatient = getPatientsByName(name)[0].cpf;
+  const chosenPatientDisease = patientsWithChosenDisease.filter((patient) => patient.cpf === chosenPatient);
+  const mostRecentChar = chosenPatientDisease.sort((a,b) => Number(b.epoch) - Number(a.epoch))[0];
+  
+  return mostRecentChar
 }
 
 module.exports = {
