@@ -32,7 +32,7 @@ app.get('/patient/:name/:disease', validateName, validateDisease, async (req, re
   const { name, disease } = req.params;
 
   const mostRecentCharacteristic = await getPatientsByNameAndDisease(name.toLowerCase(), disease.toLowerCase())
-
+  
   return res.status(200).json({mostRecentCharacteristic})
 })
 

@@ -46,7 +46,6 @@ const getPatientsByNameAndDisease = async (name, disease) => {
   const chosenPatient = getPatientsByName(name)[0].cpf;
   const chosenPatientDisease = patientsWithChosenDisease.filter((patient) => patient.cpf === chosenPatient);
   const mostRecentChar = chosenPatientDisease.sort((a,b) => Number(b.epoch) - Number(a.epoch))[0];
-  
   return mostRecentChar
 }
 
@@ -54,3 +53,5 @@ module.exports = {
   getPatientsByName,
   getPatientsByNameAndDisease
 }
+
+// await fs.writeFile(path.resolve(__dirname, '../../tests/helpers/mostRecentCharacteristicMock'), JSON.stringify(data, null, 2));
