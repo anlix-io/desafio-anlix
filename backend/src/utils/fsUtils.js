@@ -37,6 +37,29 @@ const readArchivesAndSeparateByLine = async (archives, chosenDisease) => {
   }
 }
 
+const isoDateConverter = (date) => {
+  const day = date.slice(0, 2);
+  const month = date.slice(2,4);
+  const year = date.slice(4);
+  return `${year}-${month}-${day}`;
+}
+
+const sortArchives = (archives) => {
+  const isoDate = archives.map((archive) => isoDateConverter(archive));
+  const objectDate = isoDate.map((date) => new Date(`${date} 00:00:01`));
+
+  objectDate.sort((a,b) => a - b);
+
+  const sortedDates = objectDate.map((date) => {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() +1).toString().padStart(2, '0');
+    const year = date.getFullYear().toString();
+    return `${day}${month}${year}`
+  })
+  
+  return sortedDates;
+}
+
 const getPatientsByName = (name) => patients.filter((patient) => patient.nome.toLowerCase().includes(name.toLowerCase()));
 
 const getPatientByNameAndDisease = async (name, disease) => {
@@ -78,9 +101,38 @@ const getAllCharByDate = async (paramDate) => {
   return allCharByDate;
 }
 
+const getPatientCharByDateInterval = async ({name, disease, initial_date, final_date}) => {
+  const chosenPatient = getPatientsByName(name)[0].cpf;
+  const chosenDisease = disease === 'cardiaco' ? ind_card_dir : ind_pulm_dir;
+  const archives = await readDir(chosenDisease);
+  const sortedArchives = sortArchives(archives);
+
+  const firstPosition = sortedArchives.indexOf(initial_date);
+  const lastPosition = sortedArchives.indexOf(final_date);
+
+  if (firstPosition === -1 || lastPosition === -1) return []
+
+  const chosenIntervalInfos = sortedArchives.filter((_, index) => index >= firstPosition && index <= lastPosition);
+
+  const allPatientsCharByIntervalDate = await readArchivesAndSeparateByLine(chosenIntervalInfos, chosenDisease);
+  const specificPatientChar = allPatientsCharByIntervalDate.filter((patient) => patient.cpf === chosenPatient);
+
+  const indKeyName = disease === 'cardiaco' ? 'ind_card' : 'ind_pulm';
+
+  const patientCharByDateInterval = {
+    patient: chosenPatient,
+    initial_date,
+    final_date,
+    [indKeyName]: specificPatientChar,
+  }
+
+  return patientCharByDateInterval
+}
+
 module.exports = {
   getPatientsByName,
   getPatientByNameAndDisease,
   getPatientAndDiseases,
-  getAllCharByDate
+  getAllCharByDate,
+  getPatientCharByDateInterval
 }
