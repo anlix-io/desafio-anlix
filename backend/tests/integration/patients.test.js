@@ -14,6 +14,13 @@ describe('Looking for patients and diseases in route /patient', function () {
       expect(response.body.result).to.have.lengthOf(3);
   });
 
+  it('/:name returns an error when there are no names that match the database', async function () {
+      const response = await chai.request(app).get('/patient/name=alexx');
+
+      expect(response.status).to.be.equal(404);
+      expect(response.body.message).to.be.equal('Patient Not Found');
+  });
+
   it('/:name/:disease returns the most recent patient information', async function () {
       const response = await chai.request(app).get('/patient/name=ale/disease=pulmonar');
 
@@ -27,6 +34,13 @@ describe('Looking for patients and diseases in route /patient', function () {
 
       expect(response.status).to.be.equal(200);
       expect(response.body).to.be.deep.equal(output);
+  });
+
+  it('/:name/:disease returns an error when the disease sought does not exist in the database', async function () {
+      const response = await chai.request(app).get('/patient/name=ale/disease=someDisease');
+
+      expect(response.status).to.be.equal(404);
+      expect(response.body.message).to.be.equal('Disease Not Found');
   });
 
   it('/:name/diseases/info returns the patient\'s cpf and its two most recent characteristics', async function () {

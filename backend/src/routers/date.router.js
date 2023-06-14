@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/date/date=:date', validateDate, async (req, res) => {
   const allCharByDate = await getAllCharByDate(req.params.date)
 
-  if (allCharByDate.length === 0) return res.status(404).send({message: 'Specified Dates Not Found'})
+  if (allCharByDate.length === 0) return res.status(404).send({message: 'Specified Date Not Found'})
   return res.status(200).json({allCharByDate})
 })
 
