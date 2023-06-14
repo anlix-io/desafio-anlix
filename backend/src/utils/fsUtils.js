@@ -101,6 +101,12 @@ const getAllCharByDate = async (paramDate) => {
   return allCharByDate;
 }
 
+const getByGenericInterval = async (sortedArchives, firstPosition, lastPosition) => {
+  const chosenIntervalInfos = sortedArchives.filter((_, index) => index >= firstPosition && index <= lastPosition);
+
+  return chosenIntervalInfos
+}
+
 const getPatientCharByDateInterval = async ({name, disease, initial_date, final_date}) => {
   const chosenPatient = getPatientsByName(name)[0].cpf;
   const chosenDisease = disease === 'cardiaco' ? ind_card_dir : ind_pulm_dir;
@@ -110,9 +116,25 @@ const getPatientCharByDateInterval = async ({name, disease, initial_date, final_
   const firstPosition = sortedArchives.indexOf(initial_date);
   const lastPosition = sortedArchives.indexOf(final_date);
 
-  if (firstPosition === -1 || lastPosition === -1) return []
+  let chosenIntervalInfos = []
+  let message = '';
 
-  const chosenIntervalInfos = sortedArchives.filter((_, index) => index >= firstPosition && index <= lastPosition);
+  switch (true) {
+    case firstPosition === -1 && lastPosition === -1:
+      return [];
+    case firstPosition === -1:
+      chosenIntervalInfos = await getByGenericInterval(sortedArchives, 0, lastPosition);
+      message = 'Initial date not found. Search performed from the first date of the database to the specified final date'
+      break;
+    case lastPosition === -1:
+      chosenIntervalInfos = await getByGenericInterval(sortedArchives, firstPosition, sortedArchives.length - 1);
+      message = 'Final date not found. Search performed from the first specified date to the last of the database'
+      break;
+    default:
+      chosenIntervalInfos = await getByGenericInterval(sortedArchives, firstPosition, lastPosition);
+      message = 'Search performed between the specified dates'
+      break;
+  }
 
   const allPatientsCharByIntervalDate = await readArchivesAndSeparateByLine(chosenIntervalInfos, chosenDisease);
   const specificPatientChar = allPatientsCharByIntervalDate.filter((patient) => patient.cpf === chosenPatient);
@@ -123,6 +145,7 @@ const getPatientCharByDateInterval = async ({name, disease, initial_date, final_
     patient: chosenPatient,
     initial_date,
     final_date,
+    message,
     [indKeyName]: specificPatientChar,
   }
 
